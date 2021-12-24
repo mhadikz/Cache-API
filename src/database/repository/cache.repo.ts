@@ -31,12 +31,22 @@ export class CacheRepo implements ICacheRepo {
          throw error
       }
    }
-   createOrUpdateData(): Promise<Cache> {
-      throw new Error('Method not implemented.')
+
+   async createOrUpdateData(data: Cache): Promise<Cache> {
+      try {
+         const query = { key: data.key }
+         const options = { upsert: true }
+
+         return await CacheModel.findOneAndUpdate(query, data, options)
+      } catch (error) {
+         throw error
+      }
    }
+
    removeData(): Promise<Cache> {
       throw new Error('Method not implemented.')
    }
+
    removeAllData(): Promise<Cache[]> {
       throw new Error('Method not implemented.')
    }

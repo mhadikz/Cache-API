@@ -8,4 +8,7 @@ router.get('/:key', controller.getCacheData)
 
 router.get('/', controller.getAllCachedData)
 
+
+router.post('/upsert', controller.upsertData)
+
 export default router
