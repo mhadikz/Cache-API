@@ -41,11 +41,18 @@ describe('Test the get endpoints', () => {
       })
    })
 
+   it('The endpoint returns data', async () => {
+      const result = await request.get('/api/v1/cache/key-test-ttl')
+      expect(result.statusCode).toEqual(200)
+      expect(result.body.result.key).toStrictEqual('key-test-ttl')
+      expect(result.body.result.value).not.toEqual('TTL-Value-Test')
+      expect(result.body.result.ttl).toBeGreaterThan(1637589044000)
+   })
+
    it('The endpoint returns all data', async () => {
       const result = await request.get('/api/v1/cache/')
       expect(result.statusCode).toEqual(200)
       expect(result.body.result.length).toBeGreaterThan(1)
-
    })
 
    it('The endpoint creates random data', async () => {
@@ -53,6 +60,4 @@ describe('Test the get endpoints', () => {
       expect(result.statusCode).toEqual(200)
       expect(result.body.result.value).toBeDefined()
    })
-
-
 })

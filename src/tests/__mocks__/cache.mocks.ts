@@ -9,5 +9,10 @@ export const mocks = [
    {
       key: 'key-test-2',
       value: 'dlskfjdelgj483lkdsjfldsfk0lkmv09-65'
+   },
+   {
+      key: 'key-test-ttl',
+      value: 'TTL-Value-Test',
+      ttl: 1637589044000
    }
 ]
