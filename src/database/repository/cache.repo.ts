@@ -36,8 +36,9 @@ export class CacheRepo implements ICacheRepo {
       try {
          const query = { key: data.key }
          const options = { upsert: true }
-
-         return await CacheModel.findOneAndUpdate(query, data, options)
+         await CacheModel.findOneAndUpdate(query, data, options)
+         const result = await CacheModel.findOne(query)
+         return result
       } catch (error) {
          throw error
       }
