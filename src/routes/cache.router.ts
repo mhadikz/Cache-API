@@ -10,7 +10,7 @@ router.get('/', controller.getAllCachedData)
 
 router.post('/upsert', controller.upsertData)
 
-router.delete('/:key', controller.removeData)
 router.delete('/remove-all-data', controller.removeAllCachedData)
+router.delete('/:key', controller.removeData)
 
 export default router
