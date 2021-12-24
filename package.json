@@ -5,7 +5,9 @@
    "main": "app.js",
    "scripts": {
       "dev": "NODE_ENV=development nodemon ./src/server.ts",
-      "test": "NODE_ENV=test jest --watchAll --verbose --runInBand"
+      "start": "NODE_ENV=production rm -rf dist && npm run build && node ./dist/server.js",
+      "test": "NODE_ENV=test jest --watchAll --verbose --runInBand",
+      "build": "tsc"
    },
    "repository": {
       "type": "git",
