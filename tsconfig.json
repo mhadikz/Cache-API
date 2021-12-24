@@ -79,14 +79,13 @@
     },
     "exclude": [
       "node_modules",
-      "build"
+      "build",
+      "src/tests/",
     ],
     "include": [
       "lib/**/*",
       "bin/*",
       "src/**/*.ts",
-      "tests/*.test.*",
-      "tests/*.spec.*",
     ]
   }
   

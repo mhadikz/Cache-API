@@ -1,32 +1,40 @@
 {
-  "name": "cache-api",
-  "version": "1.0.0",
-  "description": "The service has some endpoints to interact with cache data.",
-  "main": "server.js",
-  "scripts": {
-    "dev": "NODE_ENV=development nodemon ./src/server.ts",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mhadikz/Cache-API.git"
-  },
-  "author": "Mohammad Hadi Karamzadeh",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mhadikz/Cache-API/issues"
-  },
-  "homepage": "https://github.com/mhadikz/Cache-API#readme",
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.17.2",
-    "mongoose": "^6.1.3",
-    "nodemon": "^2.0.15",
-    "randomstring": "^1.2.1",
-    "typescript": "^4.5.4"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/randomstring": "^1.1.8"
-  }
+   "name": "cache-api",
+   "version": "1.0.0",
+   "description": "The service has some endpoints to interact with cache data.",
+   "main": "app.js",
+   "scripts": {
+      "dev": "NODE_ENV=development nodemon ./src/server.ts",
+      "test": "NODE_ENV=test jest --watchAll --verbose --runInBand"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mhadikz/Cache-API.git"
+   },
+   "author": "Mohammad Hadi Karamzadeh",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/mhadikz/Cache-API/issues"
+   },
+   "homepage": "https://github.com/mhadikz/Cache-API#readme",
+   "dependencies": {
+      "dotenv": "^10.0.0",
+      "express": "^4.17.2",
+      "mongoose": "^6.1.3",
+      "randomstring": "^1.2.1",
+      "typescript": "^4.5.4"
+   },
+   "devDependencies": {
+      "@types/express": "^4.17.13",
+      "@types/randomstring": "^1.1.8",
+      "nodemon": "^2.0.15",
+      "@babel/core": "^7.16.0",
+      "@babel/preset-env": "^7.16.4",
+      "@babel/preset-typescript": "^7.16.0",
+      "@types/jest": "^27.0.3",
+      "@types/supertest": "^2.0.11",
+      "babel-jest": "^27.4.4",
+      "jest": "^27.4.4",
+      "supertest": "^6.1.6"
+   }
 }
