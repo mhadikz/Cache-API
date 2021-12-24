@@ -2,6 +2,9 @@ import { BaseController } from './base.controller'
 import { Request, Response } from 'express'
 import { CacheRepo } from '../database/repository/cache.repo'
 import cacheModel, { ICache } from '../database/schema/cache.schema'
+import randomstring from 'randomstring'
+import { getTimeInMilliseconds } from '../helpers/date.helper'
+
 const repo = new CacheRepo()
 
 /**
@@ -24,7 +27,11 @@ export class CacheController extends BaseController {
          if (!key) return super.badRequest(res, 'Key is required.')
 
          const result = await repo.getData(key)
-         return super.ok(res, 'Data was created.', result)
+         const now = new Date().getTime()
+
+         await checkTTL(result, now)
+
+         return super.ok(res, 'Data is ready.', result)
       } catch (error) {
          return super.fail(res, error)
       }
@@ -103,3 +110,13 @@ export class CacheController extends BaseController {
       }
    }
 }
+
+async function checkTTL(result: ICache, now: number) {
+   if (result.ttl < now) {
+      result.value = randomstring.generate()
+      result.ttl = getTimeInMilliseconds(20)
+      await repo.createOrUpdateData(result)
+      console.log('TTL and the value was updated!')
+   }
+}
+
