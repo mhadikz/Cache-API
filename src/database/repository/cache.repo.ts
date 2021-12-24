@@ -4,9 +4,9 @@ import randomstring from 'randomstring'
 
 export class CacheRepo implements ICacheRepo {
    constructor() {}
+
    async getData(key: string): Promise<Cache> {
       try {
-
          const query = { key: key }
 
          const data = await CacheModel.findOne(query)
@@ -23,8 +23,13 @@ export class CacheRepo implements ICacheRepo {
          throw error
       }
    }
-   getAllData(): Promise<Cache[]> {
-      throw new Error('Method not implemented.')
+
+   async getAllData(): Promise<Cache[]> {
+      try {
+         return await CacheModel.find({ key: { $exists: true } }).select({ key: 1 })
+      } catch (error) {
+         throw error
+      }
    }
    createOrUpdateData(): Promise<Cache> {
       throw new Error('Method not implemented.')
@@ -43,4 +48,3 @@ function prepareNewData(key: string) {
    newData.value = randomstring.generate()
    return newData
 }
-

@@ -6,4 +6,6 @@ const controller = new CacheController()
 
 router.get('/:key', controller.getCacheData)
 
+router.get('/', controller.getAllCachedData)
+
 export default router

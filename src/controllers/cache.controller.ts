@@ -29,4 +29,19 @@ export class CacheController extends BaseController {
          return super.fail(res, error)
       }
    }
+
+      /**
+    * This method returns all cached data
+    * @param  {Request} req
+    * @param  {Response} res
+    */
+       async getAllCachedData(req: Request, res: Response) {
+        try {  
+  
+           const result = await repo.getAllData()
+           return super.ok(res, 'Keys are ready.', result)
+        } catch (error) {
+           return super.fail(res, error)
+        }
+     }
 }
