@@ -85,4 +85,21 @@ export class CacheController extends BaseController {
          return super.fail(res, error)
       }
    }
+
+   /**
+    * This method removes all cached data
+    * @param  {Request} req
+    * @param  {Response} res
+    */
+   async removeAllCachedData(req: Request, res: Response) {
+      try {
+         const result = await repo.removeAllData()
+
+         if (result.deletedCount === 0) return super.notFound(res, 'Cache is already empty.')
+
+         return super.ok(res, 'Data were removed.', result)
+      } catch (error) {
+         return super.fail(res, error)
+      }
+   }
 }

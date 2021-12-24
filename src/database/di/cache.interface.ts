@@ -5,5 +5,5 @@ export interface ICacheRepo {
     getAllData (): Promise<Cache[]>
     createOrUpdateData (data: Cache): Promise<Cache>
     removeData (key: string): Promise<Cache>
-    removeAllData (): Promise<Cache[]>
+    removeAllData (): Promise<any>
   }

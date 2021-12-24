@@ -53,8 +53,12 @@ export class CacheRepo implements ICacheRepo {
       }
    }
 
-   removeAllData(): Promise<Cache[]> {
-      throw new Error('Method not implemented.')
+   async removeAllData(): Promise<any> {
+      try {
+         return await CacheModel.deleteMany()
+      } catch (error) {
+         throw error
+      }
    }
 }
 
