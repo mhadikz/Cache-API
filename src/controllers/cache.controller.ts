@@ -54,12 +54,33 @@ export class CacheController extends BaseController {
          const body = req.body
 
          if (!body.key) return super.badRequest(res, 'Key is required.')
-         if (!body.value) return super.badRequest(res, 'value is required.')
+         if (!body.value) return super.badRequest(res, 'Value is required.')
 
          const cacheData = <ICache>body
          const result = await repo.createOrUpdateData(cacheData)
 
          return super.ok(res, 'Data is ready.', result)
+      } catch (error) {
+         return super.fail(res, error)
+      }
+   }
+
+   /**
+    * This method removes the data
+    * @param  {Request} req
+    * @param  {Response} res
+    */
+   async removeData(req: Request, res: Response) {
+      try {
+         const key = req.params.key
+
+         if (!key) return super.badRequest(res, 'Key is required.')
+
+         const result = await repo.removeData(key)
+
+         if (!result) return super.notFound(res)
+
+         return super.ok(res, 'Data was removed.', result)
       } catch (error) {
          return super.fail(res, error)
       }
